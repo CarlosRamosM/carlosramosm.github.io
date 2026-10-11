@@ -18,17 +18,29 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout
+      - name: Checkout repository
         uses: actions/checkout@v4
       
-      - name: Setup Node.js
+      # 1. Forzamos Node 22 de manera explícita (las comillas evitan problemas de parseo de YAML)
+      - name: Setup Node.js 22
         uses: actions/setup-node@v4
         with:
-          node-version: 22
+          node-version: '22'
           cache: 'npm'
       
-      - name: Install, build, and upload your site
-        uses: withastro/action@v2
+      # 2. Instalación limpia y determinista (npm ci es más rápido y seguro que npm install en CI)
+      - name: Install dependencies
+        run: npm ci
+      
+      # 3. Ejecutamos el build directamente, sin acciones de terceros que puedan interferir
+      - name: Build with Astro
+        run: npm run build
+
+      # 4. Subimos la carpeta 'dist' generada como artefacto para el paso de deploy
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: ./dist
 
   deploy:
     needs: build
