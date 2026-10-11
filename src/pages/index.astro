@@ -1,11 +1,164 @@
 ---
-import Welcome from '../components/Welcome.astro';
-import Layout from '../layouts/Layout.astro';
-
-// Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
-// Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
+// src/pages/index.astro
 ---
 
-<Layout>
-	<Welcome />
-</Layout>
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Carlos Ramos M. | Senior Backend Engineer</title>
+    <meta
+      name="description"
+      content="Sitio en construcción. Senior Backend Engineer especializado en Java, Spring Boot y Arquitectura de Software Escalable."
+    />
+    <style>
+      :root {
+        --bg-color: #0f172a; /* Slate 900 (Oscuro profesional) */
+        --text-color: #f8fafc; /* Slate 50 */
+        --accent-color: #38bdf8; /* Sky 400 (Azul tecnológico) */
+      }
+      body {
+        margin: 0;
+        font-family:
+          system-ui,
+          -apple-system,
+          "Segoe UI",
+          Roboto,
+          sans-serif;
+        background-color: var(--bg-color);
+        color: var(--text-color);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        min-height: 100vh;
+        text-align: center;
+        padding: 2rem;
+      }
+      .container {
+        max-width: 600px;
+      }
+
+      /* Estilo para tu foto */
+      .profile-photo {
+        width: 150px;
+        height: 150px;
+        border-radius: 50%;
+        object-fit: cover;
+        border: 3px solid var(--accent-color);
+        margin-bottom: 1.5rem;
+        background-color: #1e293b; /* Color de fondo mientras cargas la foto */
+      }
+
+      h1 {
+        font-size: 2rem;
+        margin-bottom: 0.5rem;
+        font-weight: 700;
+      }
+      .subtitle {
+        font-size: 1.1rem;
+        color: #94a3b8;
+        margin-bottom: 2rem;
+      }
+
+      .badge {
+        display: inline-block;
+        background-color: rgba(56, 189, 248, 0.1);
+        color: var(--accent-color);
+        padding: 0.5rem 1rem;
+        border-radius: 9999px;
+        font-size: 0.875rem;
+        font-weight: 600;
+        margin-bottom: 2rem;
+        border: 1px solid rgba(56, 189, 248, 0.2);
+      }
+
+      .contact-link {
+        color: var(--text-color);
+        text-decoration: none;
+        border-bottom: 1px dashed var(--accent-color);
+        transition:
+          color 0.2s,
+          border-color 0.2s;
+      }
+      .contact-link:hover {
+        color: var(--accent-color);
+        border-bottom-style: solid;
+      }
+
+      footer {
+        margin-top: 3rem;
+        font-size: 0.875rem;
+        color: #64748b;
+      }
+      footer a {
+        color: #94a3b8;
+        text-decoration: none;
+        margin: 0 0.5rem;
+      }
+      footer a:hover {
+        color: var(--accent-color);
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <!-- 
+        INSTRUCCIÓN: Guarda tu foto en la carpeta 'public' de tu proyecto 
+        con el nombre 'foto.jpg' (o cambia el nombre aquí). 
+        El atributo onerror oculta la imagen si aún no la has subido.
+      -->
+      <img
+        src="/foto.jpg"
+        alt="Carlos Ramos Montoya"
+        class="profile-photo"
+        onerror="this.style.display='none'"
+      />
+
+      <div class="badge">🚧 Sitio en Construcción</div>
+
+      <h1>Carlos Ramos Montoya</h1>
+      <p class="subtitle">Senior Backend Engineer | Java & Spring Boot</p>
+
+      <p style="line-height: 1.6; margin-bottom: 2rem; color: #cbd5e1;">
+        Actualmente estoy construyendo este portafolio para compartir mis
+        proyectos, decisiones de arquitectura y desafíos técnicos.
+        <br /><br />
+        <em style="color: #94a3b8;"
+          >"Construyendo sistemas robustos desde los cimientos, con la
+          dedicación y el espíritu de equipo que caracteriza a Samsan Tech."</em
+        >
+      </p>
+
+      <p style="margin-bottom: 1rem;">
+        ¿Quieres contactarme mientras tanto?<br />
+        <a href="mailto:contacto@carlosramosm.dev" class="contact-link"
+          >contacto@carlosramosm.dev</a
+        >
+      </p>
+
+      <footer>
+        <p>
+          © 2026 Carlos Ramos M.
+          <br />
+          <a
+            href="https://github.com/carlosramosm"
+            target="_blank"
+            rel="noopener noreferrer">GitHub</a
+          > •
+          <a
+            href="https://gitlab.com/carlosramosm"
+            target="_blank"
+            rel="noopener noreferrer">GitLab</a
+          > •
+          <a
+            href="https://linkedin.com/in/tu-usuario"
+            target="_blank"
+            rel="noopener noreferrer">LinkedIn</a
+          >
+        </p>
+      </footer>
+    </div>
+  </body>
+</html>
