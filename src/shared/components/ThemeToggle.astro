@@ -1,0 +1,32 @@
+<button id="theme-toggle" type="button" aria-label="Cambiar tema claro/oscuro">
+  <span class="icon-dark">☀️</span><span class="icon-light">🌙</span>
+</button>
+
+<script>
+  document.getElementById("theme-toggle")!.addEventListener("click", () => {
+    const next = document.documentElement.dataset.theme === "light" ? "dark" : "light";
+    document.documentElement.dataset.theme = next;
+    try {
+      localStorage.setItem("theme", next);
+    } catch {}
+    document.dispatchEvent(new Event("themechange"));
+  });
+</script>
+
+<style>
+  button {
+    background: none;
+    border: 1px solid var(--border-color);
+    border-radius: 0.5rem;
+    padding: 0.25rem 0.5rem;
+    cursor: pointer;
+    font-size: 1rem;
+  }
+  button:hover {
+    border-color: var(--accent-color);
+  }
+  :global([data-theme="dark"]) .icon-light,
+  :global([data-theme="light"]) .icon-dark {
+    display: none;
+  }
+</style>

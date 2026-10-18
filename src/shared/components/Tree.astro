@@ -1,0 +1,58 @@
+---
+export interface TreeItem {
+  title: string;
+  href: string;
+  topic: string;
+}
+interface Props {
+  items: TreeItem[];
+  current?: string;
+}
+const { items, current } = Astro.props;
+const topics = Map.groupBy(items, (i) => i.topic);
+---
+
+<nav class="tree" aria-label="Temas">
+  {
+    [...topics].sort(([a], [b]) => a.localeCompare(b)).map(([topic, entries]) => (
+      <details open={entries.some((e) => e.href === current) || !current}>
+        <summary>{topic}</summary>
+        <ul>
+          {entries.map((e) => (
+            <li>
+              <a href={e.href} aria-current={e.href === current ? "page" : undefined}>
+                {e.title}
+              </a>
+            </li>
+          ))}
+        </ul>
+      </details>
+    ))
+  }
+</nav>
+
+<style>
+  summary {
+    cursor: pointer;
+    font-weight: 600;
+    color: var(--text-color);
+    padding-block: 0.25rem;
+  }
+  ul {
+    list-style: none;
+    margin: 0 0 0.5rem 0.4rem;
+    padding-left: 0.75rem;
+    border-left: 1px solid var(--border-color);
+  }
+  a {
+    display: block;
+    padding-block: 0.15rem;
+    color: var(--text-body);
+    text-decoration: none;
+    font-size: 0.95rem;
+  }
+  a:hover,
+  a[aria-current="page"] {
+    color: var(--accent-color);
+  }
+</style>

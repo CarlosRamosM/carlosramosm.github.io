@@ -1,0 +1,41 @@
+---
+import { socials } from "../../features/contact/links";
+---
+
+<footer>
+  <div class="wrap">
+    <span>© {new Date().getFullYear()} Carlos Ramos M.</span>
+    <span>
+      {
+        socials.map((s) => (
+          <a href={s.href} target="_blank" rel="noopener noreferrer">
+            {s.label}
+          </a>
+        ))
+      }
+    </span>
+  </div>
+</footer>
+
+<style>
+  footer {
+    border-top: 1px solid var(--border-color);
+    padding-block: 1.5rem;
+    font-size: 0.875rem;
+    color: var(--text-muted);
+  }
+  .wrap {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+  a {
+    color: var(--text-muted);
+    text-decoration: none;
+    margin-left: 1rem;
+  }
+  a:hover {
+    color: var(--accent-color);
+  }
+</style>

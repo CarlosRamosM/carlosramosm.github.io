@@ -1,0 +1,41 @@
+---
+import BaseLayout from "./BaseLayout.astro";
+import Tree, { type TreeItem } from "../components/Tree.astro";
+
+interface Props {
+  title: string;
+  description?: string;
+  items: TreeItem[];
+  current?: string;
+}
+const { title, description, items, current } = Astro.props;
+---
+
+<BaseLayout title={`${title} | Carlos Ramos M.`} description={description}>
+  <div class="wrap layout">
+    <aside><Tree items={items} current={current} /></aside>
+    <div class="content"><slot /></div>
+  </div>
+</BaseLayout>
+
+<style>
+  .layout {
+    display: grid;
+    grid-template-columns: 16rem minmax(0, 1fr);
+    gap: 2.5rem;
+    padding-block: 2.5rem;
+  }
+  aside {
+    align-self: start;
+    position: sticky;
+    top: 5rem;
+  }
+  @media (max-width: 48rem) {
+    .layout {
+      grid-template-columns: 1fr;
+    }
+    aside {
+      position: static;
+    }
+  }
+</style>

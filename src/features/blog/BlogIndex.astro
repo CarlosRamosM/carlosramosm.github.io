@@ -1,0 +1,29 @@
+---
+import { getCollection } from "astro:content";
+import SectionLayout from "../../shared/layouts/SectionLayout.astro";
+
+const posts = (await getCollection("blog")).sort((a, b) => +b.data.date - +a.data.date);
+const items = posts.map((p) => ({ title: p.data.title, href: `/blog/${p.id}/`, topic: p.data.topic }));
+---
+
+<SectionLayout title="Blog" items={items} description="Ideas sobre desarrollo de software.">
+  <h1>Blog</h1>
+  <p>
+    Ideas sobre temas que considero importantes de compartir: IA en el desarrollo de software,
+    modas y prácticas de la industria, y lo que he aprendido construyendo sistemas.
+  </p>
+  <ul class="card-list">
+    {
+      posts.map((p) => (
+        <li>
+          <a class="card" href={`/blog/${p.id}/`}>
+            <span class="badge">{p.data.topic}</span>
+            <h3>{p.data.title}</h3>
+            <p>{p.data.description}</p>
+            <small>{p.data.date.toLocaleDateString("es-MX", { dateStyle: "long", timeZone: "UTC" })}</small>
+          </a>
+        </li>
+      ))
+    }
+  </ul>
+</SectionLayout>

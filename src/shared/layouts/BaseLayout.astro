@@ -1,0 +1,43 @@
+---
+import "@fontsource-variable/jetbrains-mono";
+import "@fontsource-variable/fira-code";
+import "@fontsource-variable/inter";
+import "../../styles/global.css";
+import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
+
+interface Props {
+  title?: string;
+  description?: string;
+}
+const {
+  title = "Carlos Ramos M. | Senior Backend Engineer",
+  description = "Senior Backend Engineer especializado en Java, Spring Boot y Arquitectura de Software Escalable.",
+} = Astro.props;
+---
+
+<!doctype html>
+<html lang="es" data-theme="dark">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" href="/favicon.ico" />
+    <!-- Antes del primer paint para evitar parpadeo de tema -->
+    <script is:inline>
+      try {
+        const t =
+          localStorage.getItem("theme") ||
+          (matchMedia("(prefers-color-scheme: light)").matches ? "light" : "dark");
+        document.documentElement.dataset.theme = t;
+      } catch {}
+    </script>
+  </head>
+  <body>
+    <Header />
+    <main><slot /></main>
+    <Footer />
+  </body>
+</html>

@@ -52,3 +52,5 @@ coverage/
 .vercel
 .netlify
 .netlify.toml
+
+cv/

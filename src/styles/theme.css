@@ -1,0 +1,33 @@
+/* Tokens de color. Oscuro = tema original del sitio en construcción. */
+:root {
+  --font-body: "JetBrains Mono Variable", ui-monospace, monospace;
+  --font-code: "Fira Code Variable", ui-monospace, monospace;
+  --font-prose: "Inter Variable", system-ui, sans-serif;
+}
+
+:root,
+:root[data-theme="dark"] {
+  --bg-color: #0f172a; /* Slate 900 */
+  --surface-color: #1e293b; /* Slate 800 */
+  --border-color: #334155; /* Slate 700 */
+  --text-color: #f8fafc; /* Slate 50 */
+  --text-body: #cbd5e1; /* Slate 300 */
+  --text-muted: #94a3b8; /* Slate 400 */
+  --accent-color: #38bdf8; /* Sky 400 */
+  --accent-soft: rgba(56, 189, 248, 0.1);
+  --accent-border: rgba(56, 189, 248, 0.2);
+  color-scheme: dark;
+}
+
+:root[data-theme="light"] {
+  --bg-color: #f8fafc;
+  --surface-color: #ffffff;
+  --border-color: #e2e8f0;
+  --text-color: #0f172a;
+  --text-body: #334155;
+  --text-muted: #64748b;
+  --accent-color: #0369a1; /* Sky 700: contraste AA sobre claro */
+  --accent-soft: rgba(3, 105, 161, 0.08);
+  --accent-border: rgba(3, 105, 161, 0.25);
+  color-scheme: light;
+}

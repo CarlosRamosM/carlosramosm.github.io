@@ -1,0 +1,29 @@
+---
+import { getCollection, render, type CollectionEntry } from "astro:content";
+import SectionLayout from "../../shared/layouts/SectionLayout.astro";
+
+interface Props {
+  project: CollectionEntry<"proyectos">;
+}
+const { project } = Astro.props;
+const { Content } = await render(project);
+const items = (await getCollection("proyectos")).map((p) => ({
+  title: p.data.title,
+  href: `/proyectos/${p.id}/`,
+  topic: p.data.topic,
+}));
+---
+
+<SectionLayout title={project.data.title} description={project.data.description} items={items} current={`/proyectos/${project.id}/`}>
+  <article class="prose reading">
+    <span class="badge">{project.data.topic}</span>
+    <h1>{project.data.title}</h1>
+    <p>{project.data.description}</p>
+    <Content />
+    <h2>Código</h2>
+    <p><a class="btn" href={project.data.repo} target="_blank" rel="noopener noreferrer">Ver en GitHub</a></p>
+  </article>
+  <script>
+    import "../../shared/scripts/mermaid";
+  </script>
+</SectionLayout>

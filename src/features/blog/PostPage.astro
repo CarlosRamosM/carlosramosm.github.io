@@ -1,0 +1,27 @@
+---
+import { getCollection, render, type CollectionEntry } from "astro:content";
+import SectionLayout from "../../shared/layouts/SectionLayout.astro";
+
+interface Props {
+  post: CollectionEntry<"blog">;
+}
+const { post } = Astro.props;
+const { Content } = await render(post);
+const items = (await getCollection("blog")).map((p) => ({
+  title: p.data.title,
+  href: `/blog/${p.id}/`,
+  topic: p.data.topic,
+}));
+---
+
+<SectionLayout title={post.data.title} description={post.data.description} items={items} current={`/blog/${post.id}/`}>
+  <article class="prose reading">
+    <span class="badge">{post.data.topic}</span>
+    <h1>{post.data.title}</h1>
+    <small>{post.data.date.toLocaleDateString("es-MX", { dateStyle: "long", timeZone: "UTC" })}</small>
+    <Content />
+  </article>
+  <script>
+    import "../../shared/scripts/mermaid";
+  </script>
+</SectionLayout>

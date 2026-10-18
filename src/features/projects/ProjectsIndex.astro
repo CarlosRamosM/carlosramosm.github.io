@@ -1,0 +1,51 @@
+---
+import { getCollection } from "astro:content";
+import BaseLayout from "../../shared/layouts/BaseLayout.astro";
+import SectionLayout from "../../shared/layouts/SectionLayout.astro";
+
+const projects = await getCollection("proyectos");
+const items = projects.map((p) => ({ title: p.data.title, href: `/proyectos/${p.id}/`, topic: p.data.topic }));
+---
+
+{
+  projects.length === 0 ? (
+    <BaseLayout title="Proyectos | Carlos Ramos M.">
+      <section class="wrap">
+        <span class="badge">🚧 En construcción</span>
+        <h1>Proyectos</h1>
+        <p>
+          Estoy terminando el código fuente que sustenta esta sección. Pronto publicaré aquí cada proyecto con su
+          problema, decisiones de arquitectura, diagramas y enlace al repositorio.
+        </p>
+      </section>
+    </BaseLayout>
+  ) : (
+<SectionLayout title="Proyectos" items={items} description="Portafolio de proyectos y prácticas de arquitectura backend.">
+  <h1>Proyectos</h1>
+  <p>
+    Portafolio de proyectos y prácticas que he desarrollado (y desarrollaré). Cada uno tiene su
+    propia página con el problema que resuelve, las decisiones de arquitectura, diagramas y el
+    enlace al código.
+  </p>
+  <ul class="card-list">
+    {
+      projects.map((p) => (
+        <li>
+          <a class="card" href={`/proyectos/${p.id}/`}>
+            <span class="badge">{p.data.topic}</span>
+            <h3>{p.data.title}</h3>
+            <p>{p.data.description}</p>
+          </a>
+        </li>
+      ))
+    }
+  </ul>
+</SectionLayout>
+  )
+}
+
+<style>
+  section {
+    padding-block: 4rem;
+  }
+</style>

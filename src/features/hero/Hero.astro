@@ -1,0 +1,119 @@
+---
+const years = new Date().getFullYear() - 2006; // inicio de carrera: enero 2006
+const stats = [
+  { value: `${years}+`, label: "años en la industria IT" },
+  { value: "Java 5 → 21", label: "de Struts y EJB a Spring Boot 4" },
+  { value: "6–10", label: "desarrolladores en code review" },
+];
+const stack = ["Java", "Spring Boot", "REST / GraphQL", "OpenAPI", "Microservicios", "PostgreSQL", "Redis", "Kafka", "AWS", "GCP", "Docker"];
+---
+
+<section class="wrap hero">
+  <img
+    src="/foto.jpg"
+    alt="Carlos Ramos Montoya"
+    class="photo"
+    onerror="this.style.display='none'"
+  />
+  <div>
+    <h1>Carlos Ramos Montoya</h1>
+    <p class="role">Senior Backend Engineer</p>
+    <p class="subtitle">
+      Especializado en Java, Spring Boot y Arquitectura de Software Escalable.
+    </p>
+    <h2>Sobre mí</h2>
+    <p>
+      Llevo {years} años construyendo software: empecé con aplicaciones de escritorio en Java
+      y pasé por SOA, Struts y EJB hasta llegar a microservicios con Spring Boot en AWS y
+      Google Cloud. He trabajado en banca, pagos, e-commerce (Mercado Libre) y aerolíneas, casi
+      siempre como referencia técnica del equipo: diseñando APIs <em>contract-first</em>,
+      documentando decisiones con ADRs, modernizando sistemas legacy y haciendo code review.
+    </p>
+    <p>
+      Me enfoco en código limpio, pruebas y resiliencia: creo en construir
+      sistemas robustos desde los cimientos, con la misma dedicación y espíritu
+      de equipo que caracteriza a los grandes fundadores tecnológicos (sí, tomo
+      inspiración de la ética de trabajo de Samsan Tech).
+    </p>
+    <ul class="stats">
+      {stats.map((x) => <li><strong>{x.value}</strong><span>{x.label}</span></li>)}
+    </ul>
+    <ul class="stack">
+      {stack.map((t) => <li class="badge">{t}</li>)}
+    </ul>
+    <p>
+      <a class="btn" href="/proyectos/">Ver proyectos</a>
+      <a class="btn" href="/blog/">Leer el blog</a>
+    </p>
+  </div>
+</section>
+
+<style>
+  .hero {
+    display: flex;
+    gap: 2rem;
+    align-items: center;
+    padding-block: 4rem;
+  }
+  .photo {
+    width: 160px;
+    height: 160px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 3px solid var(--accent-color);
+    background: var(--surface-color);
+    flex-shrink: 0;
+  }
+  h1 {
+    font-size: 2.25rem;
+    margin: 0;
+  }
+  .role {
+    color: var(--accent-color);
+    font-weight: 600;
+    margin: 0.25rem 0;
+  }
+  .subtitle {
+    color: var(--text-muted);
+    font-size: 1.1rem;
+  }
+  h2 {
+    font-size: 1.1rem;
+    margin-bottom: 0.25rem;
+  }
+  ul {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+  .stats {
+    gap: 1.5rem;
+    margin-block: 1.5rem;
+  }
+  .stats li {
+    display: flex;
+    flex-direction: column;
+  }
+  .stats strong {
+    font-size: 1.4rem;
+    color: var(--accent-color);
+  }
+  .stats span {
+    font-size: 0.85rem;
+    color: var(--text-muted);
+  }
+  .btn {
+    margin-right: 0.5rem;
+  }
+  @media (max-width: 40rem) {
+    .hero {
+      flex-direction: column;
+      text-align: center;
+    }
+    ul {
+      justify-content: center;
+    }
+  }
+</style>

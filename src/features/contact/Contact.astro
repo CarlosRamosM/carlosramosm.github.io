@@ -1,0 +1,30 @@
+---
+import { email, socials } from "./links";
+---
+
+<section id="contacto" class="wrap">
+  <h2>Contacto</h2>
+  <p>
+    Correo profesional: <a href={`mailto:${email}`}>{email}</a>
+  </p>
+  <p class="links">
+    {
+      socials.map((s) => (
+        <a class="btn" href={s.href} target="_blank" rel="noopener noreferrer">
+          {s.label}
+        </a>
+      ))
+    }
+  </p>
+</section>
+
+<style>
+  section {
+    padding-block: 3rem;
+  }
+  .links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+  }
+</style>
