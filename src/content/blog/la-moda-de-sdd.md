@@ -28,36 +28,15 @@ Un flujo típico de SDD con OpenSpec produce, antes de escribir una sola línea 
 
 Ahora pongamos cada uno al lado de su "antepasado":
 
-```mermaid
-flowchart LR
-    subgraph SDD["SDD con IA (hoy)"]
-        A1["proposal.md"]
-        A2["design.md"]
-        A3["specs / escenarios"]
-        A4["tasks.md"]
-        A5["validate --strict"]
-        A6["matriz escenario → prueba"]
-        A7["spec como fuente de verdad<br/>para generar código"]
-    end
-
-    subgraph CLASICO["Ingeniería de software (siempre)"]
-        B1["Documento de visión /<br/>solicitud de cambio"]
-        B2["Documento de arquitectura,<br/>ADRs, análisis de riesgos"]
-        B3["Casos de uso (RUP),<br/>historias de usuario (Agile),<br/>criterios de aceptación (QA)"]
-        B4["WBS / plan de iteración /<br/>backlog del sprint"]
-        B5["Revisiones de PQA,<br/>estándares del líder técnico"]
-        B6["Matriz de trazabilidad<br/>requerimiento → prueba"]
-        B7["Contract-first:<br/>WSDL / OpenAPI"]
-    end
-
-    A1 -.-> B1
-    A2 -.-> B2
-    A3 -.-> B3
-    A4 -.-> B4
-    A5 -.-> B5
-    A6 -.-> B6
-    A7 -.-> B7
-```
+| SDD con IA (hoy) | Ingeniería de software (siempre) |
+|---|---|
+| `proposal.md` | Documento de visión / solicitud de cambio |
+| `design.md` | Documento de arquitectura, ADRs, análisis de riesgos |
+| specs / escenarios | Casos de uso (RUP), historias de usuario (Agile), criterios de aceptación (QA) |
+| `tasks.md` | WBS / plan de iteración / backlog del sprint |
+| `validate --strict` | Revisiones de PQA, estándares del líder técnico |
+| Matriz escenario → prueba | Matriz de trazabilidad requerimiento → prueba |
+| Spec como fuente de verdad para generar código | Contract-first: WSDL / OpenAPI |
 
 Si alguien trabajó en un proyecto con RUP, CMMI o un equipo ágil medianamente serio, reconocerá cada caja de la derecha. Cambió el formato (Markdown en el repositorio en lugar de un documento de Word en un servidor compartido), pero la intención es la misma.
 
